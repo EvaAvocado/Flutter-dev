@@ -412,6 +412,8 @@ class CurrentCharacter extends StatefulWidget {
 }
 
 class _CurrentCharacterState extends State<CurrentCharacter> {
+  bool textFormField = true;
+
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -459,35 +461,78 @@ class _CurrentCharacterState extends State<CurrentCharacter> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Flexible(
-                            child: Padding(
-                          padding: EdgeInsets.fromLTRB(0, 20, 10, 0),
-                          child: Container(
-                            child: DropCapText(
-                                "She live in the Hell, she like music and eat humans like you. A demon is a supernatural entity, typically associated with evil, prevalent historically in religion, occultism, literature, fiction, mythology, and folklore; as well as in media such as comics, video games, movies, anime, and television series.In Ancient Near Eastern religions and in the Abrahamic traditions, including ancient and medieval Christian demonology, a demon is considered a harmful spiritual entity which may cause demonic possession, calling for an exorcism. Large portions of the Jewish demonology, a key influence on Christianity and Islam, originated from a later form of Zoroastrianism, and were transferred to Judaism during the Persian era.",
-                                style: TextStyle(
-                                  color: Color.fromRGBO(244, 216, 39, 1),
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w300,
-                                ),
-                                dropCapPadding: EdgeInsets.only(right: 10.0),
-                                dropCap: DropCap(
-                                  width: 150,
-                                  height: 250,
-                                  child: ClipRRect(
-                                      borderRadius: BorderRadius.only(
-                                          topLeft: Radius.circular(15.0),
-                                          bottomLeft: Radius.circular(15.0),
-                                          topRight: Radius.circular(15.0),
-                                          bottomRight: Radius.circular(15.0)),
-                                      child: Image.asset(
-                                        "assets/demon.jpg",
-                                        height: 250,
-                                        width: 150,
-                                        fit: BoxFit.cover,
+                          child: Padding(
+                            padding: EdgeInsets.fromLTRB(0, 20, 10, 0),
+                            child: Container(
+                                child: textFormField
+                                    ? TextButton(
+                                        child: DropCapText(
+                                            "She live in the Hell, she like music and eat humans like you. A demon is a supernatural entity, typically associated with evil, prevalent historically in religion, occultism, literature, fiction, mythology, and folklore; as well as in media such as comics, video games, movies, anime, and television series.In Ancient Near Eastern religions and in the Abrahamic traditions, including ancient and medieval Christian demonology, a demon is considered a harmful spiritual entity which may cause demonic possession, calling for an exorcism. Large portions of the Jewish demonology, a key influence on Christianity and Islam, originated from a later form of Zoroastrianism, and were transferred to Judaism during the Persian era.",
+                                            style: TextStyle(
+                                              color: Color.fromRGBO(
+                                                  244, 216, 39, 1),
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.w300,
+                                            ),
+                                            dropCapPadding:
+                                                EdgeInsets.only(right: 10.0),
+                                            dropCap: DropCap(
+                                              width: 150,
+                                              height: 250,
+                                              child: ClipRRect(
+                                                  borderRadius:
+                                                      BorderRadius.only(
+                                                          topLeft: Radius
+                                                              .circular(15.0),
+                                                          bottomLeft:
+                                                              Radius.circular(
+                                                                  15.0),
+                                                          topRight:
+                                                              Radius.circular(
+                                                                  15.0),
+                                                          bottomRight:
+                                                              Radius.circular(
+                                                                  15.0)),
+                                                  child: Image.asset(
+                                                    "assets/demon.jpg",
+                                                    height: 250,
+                                                    width: 150,
+                                                    fit: BoxFit.cover,
+                                                  )),
+                                            )),
+                                        onPressed: () {
+                                          setState(() {
+                                            textFormField = false;
+                                          });
+                                        },
+                                      )
+                                    : Padding(
+                                        padding:
+                                            EdgeInsets.fromLTRB(15, 0, 10, 0),
+                                        child: TextFormField(
+                                          initialValue:
+                                              "She live in the Hell, she like music and eat humans like you. A demon is a supernatural entity, typically associated with evil, prevalent historically in religion, occultism, literature, fiction, mythology, and folklore; as well as in media such as comics, video games, movies, anime, and television series.In Ancient Near Eastern religions and in the Abrahamic traditions, including ancient and medieval Christian demonology, a demon is considered a harmful spiritual entity which may cause demonic possession, calling for an exorcism. Large portions of the Jewish demonology, a key influence on Christianity and Islam, originated from a later form of Zoroastrianism, and were transferred to Judaism during the Persian era.",
+                                          minLines: 1,
+                                          maxLines: 1000,
+                                          decoration: InputDecoration(
+                                              border: InputBorder.none,
+                                              hintText: "Description",
+                                              hintStyle: TextStyle(
+                                                color: Color.fromRGBO(
+                                                    27, 0, 87, 1),
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.w300,
+                                              )),
+                                          style: TextStyle(
+                                            color:
+                                                Color.fromRGBO(244, 216, 39, 1),
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.w300,
+                                          ),
+                                        ),
                                       )),
-                                )),
                           ),
-                        ))
+                        )
                       ],
                     ),
                     Divider(
