@@ -6,6 +6,7 @@ import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:expandable_bottom_sheet/expandable_bottom_sheet.dart';
 import 'package:intl/intl.dart';
+import 'package:drop_cap_text/drop_cap_text.dart';
 
 void main() async {
   runApp(MyApp());
@@ -405,7 +406,12 @@ class AllCharacters extends StatelessWidget {
   }
 }
 
-class CurrentCharacter extends StatelessWidget {
+class CurrentCharacter extends StatefulWidget {
+  @override
+  State<CurrentCharacter> createState() => _CurrentCharacterState();
+}
+
+class _CurrentCharacterState extends State<CurrentCharacter> {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -426,9 +432,16 @@ class CurrentCharacter extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      "Demon",
-                      textAlign: TextAlign.left,
+                    TextFormField(
+                      initialValue: "Demon",
+                      decoration: InputDecoration(
+                          border: InputBorder.none,
+                          hintText: "Name",
+                          hintStyle: TextStyle(
+                            color: Color.fromRGBO(244, 216, 39, 1),
+                            fontSize: 55,
+                            fontWeight: FontWeight.w200,
+                          )),
                       style: TextStyle(
                         color: Color.fromRGBO(244, 216, 39, 1),
                         fontSize: 55,
@@ -445,43 +458,37 @@ class CurrentCharacter extends StatelessWidget {
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Padding(
-                            padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
-                            child: ClipRRect(
-                                borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(15.0),
-                                    bottomLeft: Radius.circular(15.0),
-                                    topRight: Radius.circular(15.0),
-                                    bottomRight: Radius.circular(15.0)),
-                                child: Image.asset(
-                                  "assets/demon.jpg",
-                                  height: 250,
+                        Flexible(
+                            child: Padding(
+                          padding: EdgeInsets.fromLTRB(0, 20, 10, 0),
+                          child: Container(
+                            child: DropCapText(
+                                "She live in the Hell, she like music and eat humans like you. A demon is a supernatural entity, typically associated with evil, prevalent historically in religion, occultism, literature, fiction, mythology, and folklore; as well as in media such as comics, video games, movies, anime, and television series.In Ancient Near Eastern religions and in the Abrahamic traditions, including ancient and medieval Christian demonology, a demon is considered a harmful spiritual entity which may cause demonic possession, calling for an exorcism. Large portions of the Jewish demonology, a key influence on Christianity and Islam, originated from a later form of Zoroastrianism, and were transferred to Judaism during the Persian era.",
+                                style: TextStyle(
+                                  color: Color.fromRGBO(244, 216, 39, 1),
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w300,
+                                ),
+                                dropCapPadding: EdgeInsets.only(right: 10.0),
+                                dropCap: DropCap(
                                   width: 150,
-                                  fit: BoxFit.cover,
-                                ))),
-                        Padding(
-                          padding: EdgeInsets.fromLTRB(20, 20, 0, 0),
-                          child: Text(
-                            "She live in the Hell,\nshe like music and\neat humans like you.\nA demon is a\nsupernatural entity,\ntypically associated\nwith evil, prevalent\nhistorically in religion,\noccultism, literature,\nfiction, mythology,\nand folklore; as\nwell as in media\nsuch as comics, video\ngames, movies, anime,",
-                            style: TextStyle(
-                              color: Color.fromRGBO(244, 216, 39, 1),
-                              fontSize: 16,
-                              fontWeight: FontWeight.w300,
-                            ),
+                                  height: 250,
+                                  child: ClipRRect(
+                                      borderRadius: BorderRadius.only(
+                                          topLeft: Radius.circular(15.0),
+                                          bottomLeft: Radius.circular(15.0),
+                                          topRight: Radius.circular(15.0),
+                                          bottomRight: Radius.circular(15.0)),
+                                      child: Image.asset(
+                                        "assets/demon.jpg",
+                                        height: 250,
+                                        width: 150,
+                                        fit: BoxFit.cover,
+                                      )),
+                                )),
                           ),
-                        )
+                        ))
                       ],
-                    ),
-                    Padding(
-                      padding: EdgeInsets.fromLTRB(0, 0, 10, 0),
-                      child: Text(
-                        "and television series.In Ancient Near Eastern religions and in the Abrahamic traditions, including ancient and medieval Christian demonology, a demon is considered a harmful spiritual entity which may cause demonic possession, calling for an exorcism. Large portions of the Jewish demonology, a key influence on Christianity and Islam, originated from a later form of Zoroastrianism, and were transferred to Judaism during the Persian era.",
-                        style: TextStyle(
-                          color: Color.fromRGBO(244, 216, 39, 1),
-                          fontSize: 16,
-                          fontWeight: FontWeight.w300,
-                        ),
-                      ),
                     ),
                     Divider(
                       height: 30,
@@ -500,15 +507,24 @@ class CurrentCharacter extends StatelessWidget {
                               color: Color.fromRGBO(244, 216, 39, 1),
                               borderRadius: BorderRadius.circular(30),
                             ),
-                            child: Text(
-                              "Locations: Hell, House, Ocean",
-                              textAlign: TextAlign.left,
-                              style: TextStyle(
-                                color: Color.fromRGBO(27, 0, 87, 1),
-                                fontSize: 16,
-                                fontWeight: FontWeight.w300,
-                              ),
-                            ))),
+                            child: Padding(
+                                padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
+                                child: TextFormField(
+                                  initialValue: "Locations: Hell, House, Ocean",
+                                  decoration: InputDecoration(
+                                      border: InputBorder.none,
+                                      hintText: "Locations",
+                                      hintStyle: TextStyle(
+                                        color: Color.fromRGBO(27, 0, 87, 1),
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w300,
+                                      )),
+                                  style: TextStyle(
+                                    color: Color.fromRGBO(27, 0, 87, 1),
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w300,
+                                  ),
+                                )))),
                     Padding(
                         padding: EdgeInsets.fromLTRB(0, 30, 10, 0),
                         child: Container(
@@ -519,15 +535,25 @@ class CurrentCharacter extends StatelessWidget {
                               color: Color.fromRGBO(244, 216, 39, 1),
                               borderRadius: BorderRadius.circular(30),
                             ),
-                            child: Text(
-                              "Events: first meeting, difficult choise,\na trip to the hell",
-                              textAlign: TextAlign.left,
-                              style: TextStyle(
-                                color: Color.fromRGBO(27, 0, 87, 1),
-                                fontSize: 16,
-                                fontWeight: FontWeight.w300,
-                              ),
-                            ))),
+                            child: Padding(
+                                padding: EdgeInsets.fromLTRB(10, 0, 0, 20),
+                                child: TextFormField(
+                                  initialValue:
+                                      "Events: first meeting, difficult choise,\na trip to the hell",
+                                  decoration: InputDecoration(
+                                      border: InputBorder.none,
+                                      hintText: "Events",
+                                      hintStyle: TextStyle(
+                                        color: Color.fromRGBO(27, 0, 87, 1),
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w300,
+                                      )),
+                                  style: TextStyle(
+                                    color: Color.fromRGBO(27, 0, 87, 1),
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w300,
+                                  ),
+                                )))),
                     Container(
                       height: 100,
                     )
