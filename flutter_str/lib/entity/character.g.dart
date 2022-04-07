@@ -19,8 +19,10 @@ class CharacterAdapter extends TypeAdapter<Character> {
     return Character(
       name: fields[0] as String,
       description: fields[1] as String,
-      events: (fields[2] as HiveList?)?.castHiveList(),
-      locations: (fields[3] as HiveList?)?.castHiveList(),
+      events: fields[2] as String,
+      locations: fields[3] as String,
+      img_url: fields[4] as String?,
+      pk: fields[5] as String?,
     );
   }
 
@@ -35,7 +37,11 @@ class CharacterAdapter extends TypeAdapter<Character> {
       ..writeByte(2)
       ..write(obj.events)
       ..writeByte(3)
-      ..write(obj.locations);
+      ..write(obj.locations)
+      ..writeByte(4)
+      ..write(obj.img_url)
+      ..writeByte(5)
+      ..write(obj.pk);
   }
 
   @override

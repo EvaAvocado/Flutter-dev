@@ -1,25 +1,28 @@
-import 'package:flutter_str/entity/event.dart';
 import 'package:hive/hive.dart';
 
-import 'location.dart';
 
 part 'character.g.dart';
 
 @HiveType(typeId: 1)
 class Character extends HiveObject {
-
   @HiveField(0)
   String name;
   @HiveField(1)
   String description;
   @HiveField(2)
-  HiveList<Event>? events;
+  String events;
   @HiveField(3)
-  HiveList<Location>? locations;
+  String locations;
+  @HiveField(4)
+  String? img_url;
+  @HiveField(5)
+  String? pk;
 
-
-
-  Character({
-    required this.name, required this.description, required this.events, required this.locations
-});
+  Character(
+      {required this.name,
+      required this.description,
+      required this.events,
+      required this.locations,
+      this.pk = null,
+      this.img_url = null});
 }

@@ -8,7 +8,7 @@ part of 'event.dart';
 
 class EventAdapter extends TypeAdapter<Event> {
   @override
-  final int typeId = 1;
+  final int typeId = 2;
 
   @override
   Event read(BinaryReader reader) {
@@ -17,10 +17,12 @@ class EventAdapter extends TypeAdapter<Event> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return Event(
-      title: fields[0] as String,
+      name: fields[0] as String,
       description: fields[1] as String,
-      characters: (fields[2] as HiveList?)?.castHiveList(),
-      locations: (fields[3] as HiveList?)?.castHiveList(),
+      characters: fields[2] as String,
+      locations: fields[3] as String,
+      img_url: fields[4] as String?,
+      pk: fields[5] as String?,
     );
   }
 
@@ -29,13 +31,17 @@ class EventAdapter extends TypeAdapter<Event> {
     writer
       ..writeByte(4)
       ..writeByte(0)
-      ..write(obj.title)
+      ..write(obj.name)
       ..writeByte(1)
       ..write(obj.description)
       ..writeByte(2)
       ..write(obj.characters)
       ..writeByte(3)
-      ..write(obj.locations);
+      ..write(obj.locations)
+      ..writeByte(4)
+      ..write(obj.img_url)
+      ..writeByte(5)
+      ..write(obj.pk);
   }
 
   @override

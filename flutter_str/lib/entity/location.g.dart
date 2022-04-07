@@ -8,7 +8,7 @@ part of 'location.dart';
 
 class LocationAdapter extends TypeAdapter<Location> {
   @override
-  final int typeId = 1;
+  final int typeId = 3;
 
   @override
   Location read(BinaryReader reader) {
@@ -17,10 +17,12 @@ class LocationAdapter extends TypeAdapter<Location> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return Location(
-      title: fields[0] as String,
+      name: fields[0] as String,
       description: fields[1] as String,
-      characters: (fields[2] as HiveList?)?.castHiveList(),
-      events: (fields[3] as HiveList?)?.castHiveList(),
+      characters: fields[2] as String,
+      events: fields[3] as String,
+      img_url: fields[4] as String?,
+      pk: fields[5] as String?,
     );
   }
 
@@ -29,13 +31,17 @@ class LocationAdapter extends TypeAdapter<Location> {
     writer
       ..writeByte(4)
       ..writeByte(0)
-      ..write(obj.title)
+      ..write(obj.name)
       ..writeByte(1)
       ..write(obj.description)
       ..writeByte(2)
       ..write(obj.characters)
       ..writeByte(3)
-      ..write(obj.events);
+      ..write(obj.events)
+      ..writeByte(4)
+      ..write(obj.img_url)
+      ..writeByte(5)
+      ..write(obj.pk);
   }
 
   @override
